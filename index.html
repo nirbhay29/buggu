@@ -79,7 +79,7 @@
   </div>
 
   <div class="cake-page" id="cake-page">
-    <img src="birthday-cake.jpg" alt="Birthday Cake" class="cake-img">
+    <img src="bday.gif" alt="Birthday Cake" class="cake-img">
     <h2>Happy Birthday Sweetheart 🎂</h2>
     <p>May your life be filled with love, joy, and endless happiness!</p>
     <button class="next-button" onclick="showLovePage()">Next</button>
@@ -94,7 +94,6 @@
     <button class="prev-button" onclick="showCakePage()">Back</button>
   </div>
 
-  <!-- 🎉 Confetti Canvas -->
   <canvas id="confetti-canvas"></canvas>
 
   <script>
@@ -115,11 +114,12 @@
       startConfetti();
     }
 
-    // 🎊 Confetti Animation
+    // Emoji Confetti 🎉
     const canvas = document.getElementById('confetti-canvas');
     const ctx = canvas.getContext('2d');
     const confetti = [];
-    const confettiCount = 200;
+    const confettiCount = 100;
+    const emojis = ['😊', '❤️', '🥰', '🎉', '💖', '😘', '🌸','💗'];
     let animationIntervalId;
 
     function setCanvasSize() {
@@ -133,26 +133,27 @@
         confetti.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height - canvas.height,
-          r: Math.random() * 5 + 3,
+          r: Math.random() * 30 + 20, // font size
           d: Math.random() * 100,
-          color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-          tilt: Math.floor(Math.random() * 20) - 10,
-          velocity: Math.random() * 3 + 1,
-          opacity: 1
+          velocity: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.8 + 0.2,
+          emoji: emojis[Math.floor(Math.random() * emojis.length)]
         });
       }
     }
 
     function drawConfetti() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
       confetti.forEach(c => {
-        ctx.beginPath();
-        ctx.lineWidth = c.r / 2;
-        ctx.strokeStyle = `hsla(${c.color.split('(')[1].split(',')[0]}, 100%, 70%, ${c.opacity})`;
-        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
-        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
-        ctx.stroke();
+        ctx.font = `${c.r}px serif`;
+        ctx.globalAlpha = c.opacity;
+        ctx.fillText(c.emoji, c.x, c.y);
       });
+
+      ctx.globalAlpha = 1;
       updateConfetti();
     }
 
@@ -165,12 +166,11 @@
           confetti[index] = {
             x: Math.random() * canvas.width,
             y: -c.r,
-            r: Math.random() * 5 + 3,
+            r: Math.random() * 30 + 20,
             d: Math.random() * 100,
-            color: `hsl(${Math.random() * 360}, 100%, 70%)`,
-            tilt: Math.floor(Math.random() * 20) - 10,
-            velocity: Math.random() * 3 + 1,
-            opacity: 1
+            velocity: Math.random() * 12 + 1,
+            opacity: Math.random() * 0.8 + 0.2,
+            emoji: emojis[Math.floor(Math.random() * emojis.length)]
           };
         }
       });
@@ -180,7 +180,7 @@
       setCanvasSize();
       createConfetti();
       if (!animationIntervalId) {
-        animationIntervalId = setInterval(drawConfetti, 20);
+        animationIntervalId = setInterval(drawConfetti, 30);
       }
     }
 
