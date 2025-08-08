@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Love ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      
+      background: linear-gradient(to top right, #ffe6e6, #ffe0f0);
+      overflow-x: hidden;
+    }
+    .container {
+      text-align: center;
+      padding: 40px;
+    }
+    h1 {
+      font-size: 3em;
+      color: #ff4d6d;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 1.2em;
+      color: #444;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+    .btn {
+      padding: 12px 25px;
+      background: #ff4d6d;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    .btn:hover {
+      background: #e60039;
+    }
+    .gallery {
+      margin-top: 40px;
+    }
+    .gallery img {
+      width: 250px;
+      margin: 10px;
+      border-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .confetti {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Happy Birthday My Love! 🎉</h1>
+    <p>From the moment I saw you, I knew you were special. On your birthday, I just want to remind you how deeply I love you. You are the sunshine of my life, my girl, my everything. 💖</p>
+    <button class="btn" onclick="revealSurprise()">Open Your Surprise 🎁</button>
+
+    <div class="gallery" id="gallery" style="display:none;">
+      <h2>Our Beautiful Moments 💑</h2>
+      <img src="https://via.placeholder.com/250x300?text=Us+1" alt="Memory 1">
+      <img src="https://via.placeholder.com/250x300?text=Us+2" alt="Memory 2">
+      <img src="https://via.placeholder.com/250x300?text=Us+3" alt="Memory 3">
+    </div>
+  </div>
+
+  <canvas class="confetti" id="confetti-canvas"></canvas>
+
+  <script>
+    function revealSurprise() {
+      document.getElementById("gallery").style.display = "block";
+      startConfetti();
+    }
+
+    // Confetti JS
+    const canvas = document.getElementById("confetti-canvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let confetti = [];
+    for (let i = 0; i < 150; i++) {
+      confetti.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 6 + 4,
+        d: Math.random() * 150,
+        color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+        tilt: Math.floor(Math.random() * 10) - 10
+      });
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < confetti.length; i++) {
+        let c = confetti[i];
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = c.color;
+        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
+        ctx.stroke();
+      }
+      update();
+    }
+
+    function update() {
+      for (let i = 0; i < confetti.length; i++) {
+        let c = confetti[i];
+        c.y += Math.cos(c.d) + 1 + c.r / 2;
+        c.x += Math.sin(0.01) * 2;
+
+        if (c.y > canvas.height) {
+          confetti[i] = {
+            x: Math.random() * canvas.width,
+            y: -10,
+            r: c.r,
+            d: c.d,
+            color: c.color,
+            tilt: c.tilt
+          };
+        }
+      }
+    }
+
+    function startConfetti() {
+      setInterval(drawConfetti, 20);
+    }
+  </script>
+</body>
+</html>

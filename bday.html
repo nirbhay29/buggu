@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .page {
+      display: none;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .page1 {
+      background-image: url("WhatsApp Image 2025-07-17 at 15.42.04_8eb49fb8.jpg");
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding-top: 40vh;
+      color: white;
+    }
+
+    .page1 button {
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: rgba(255, 105, 180, 0.9);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .page2 {
+      background-color: #ffe6f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .cake {
+      width: 300px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 36px;
+      color: #cc0066;
+      margin-bottom: 40px;
+    }
+
+    .gallery {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .gallery img {
+      width: 180px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page 1 -->
+  <div class="page page1 active" id="page1">
+    <h1>Happy Birthday My Love 💖</h1>
+    <p>Wishing you the most magical day full of love and joy!</p>
+    <br><br>
+    <button onclick="showPage('page2')">Next</button>
+  </div>
+
+  <!-- Page 2 -->
+  <div class="page page2" id="page2">
+    <img src="cake.png" alt="Cake" class="cake">
+    <h1>Happy Birthday Sweetheart ❤️</h1>
+
+    <div class="gallery">
+      <img src="WhatsApp Image 2025-07-17 at 15.42.02_88d38571.jpg" alt="Gallery 1">
+      <img src="WhatsApp Image 2025-07-17 at 15.42.03_8ff00ae4.jpg" alt="Gallery 2">
+      <img src="WhatsApp Image 2025-07-17 at 15.42.04_8e438fac.jpg" alt="Gallery 3">
+    </div>
+  </div>
+
+  <script>
+    function showPage(id) {
+      document.getElementById('page1').classList.remove('active');
+      document.getElementById(id).classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+

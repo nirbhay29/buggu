@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-image: url('WhatsApp%20Image%202025-07-17%20at%2015.42.04_8eb49fb8.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      padding: 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      min-height: 100vh;
+    }
+    .gallery img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .next-button, .prev-button {
+      background-color: #ff69b4;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      margin-top: 30px;
+    }
+    .cake-page, .love-page {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .cake-img {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+    h1, h2 {
+      margin: 10px;
+    }
+    .love-message {
+      font-size: 24px;
+      max-width: 700px;
+      margin-top: 20px;
+    }
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="main-page">
+    <h1>Happy Birthday My Love ❤️</h1>
+    <p>You make my world beautiful every single day.</p>
+    <div class="gallery">
+      <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.02_88d38571.jpg" alt="Memory 1">
+      <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.03_8ff00ae4.jpg" alt="Memory 2">
+      <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.04_8e438fac.jpg" alt="Memory 3">
+    </div>
+    <button class="next-button" onclick="showCakePage()">Next</button>
+  </div>
+
+  <div class="cake-page" id="cake-page">
+    <img src="birthday-cake.jpg" alt="Birthday Cake" class="cake-img">
+    <h2>Happy Birthday Sweetheart 🎂</h2>
+    <p>May your life be filled with love, joy, and endless happiness!</p>
+    <button class="next-button" onclick="showLovePage()">Next</button>
+    <button class="prev-button" onclick="showMainPage()">Back</button>
+  </div>
+
+  <div class="love-page" id="love-page">
+    <h2>Every Moment With You is Special ❤️</h2>
+    <p class="love-message">
+      Your every curve enhances your beauty, and I fall in love with you every single day. You are my sunshine, my girl, my love, and the reason I smile. I can't wait to create more beautiful memories with you.
+    </p>
+    <button class="prev-button" onclick="showCakePage()">Back</button>
+  </div>
+
+  <!-- 🎉 Confetti Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script>
+    function showCakePage() {
+      document.getElementById('main-page').style.display = 'none';
+      document.getElementById('love-page').style.display = 'none';
+      document.getElementById('cake-page').style.display = 'flex';
+    }
+
+    function showMainPage() {
+      document.getElementById('cake-page').style.display = 'none';
+      document.getElementById('main-page').style.display = 'block';
+    }
+
+    function showLovePage() {
+      document.getElementById('cake-page').style.display = 'none';
+      document.getElementById('love-page').style.display = 'flex';
+      startConfetti();
+    }
+
+    // 🎊 Confetti Animation
+    const canvas = document.getElementById('confetti-canvas');
+    const ctx = canvas.getContext('2d');
+    const confetti = [];
+    const confettiCount = 200;
+    let animationIntervalId;
+
+    function setCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    function createConfetti() {
+      confetti.length = 0;
+      for (let i = 0; i < confettiCount; i++) {
+        confetti.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          r: Math.random() * 5 + 3,
+          d: Math.random() * 100,
+          color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+          tilt: Math.floor(Math.random() * 20) - 10,
+          velocity: Math.random() * 3 + 1,
+          opacity: 1
+        });
+      }
+    }
+
+    function drawConfetti() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      confetti.forEach(c => {
+        ctx.beginPath();
+        ctx.lineWidth = c.r / 2;
+        ctx.strokeStyle = `hsla(${c.color.split('(')[1].split(',')[0]}, 100%, 70%, ${c.opacity})`;
+        ctx.moveTo(c.x + c.tilt + c.r / 4, c.y);
+        ctx.lineTo(c.x + c.tilt, c.y + c.tilt + c.r / 4);
+        ctx.stroke();
+      });
+      updateConfetti();
+    }
+
+    function updateConfetti() {
+      confetti.forEach((c, index) => {
+        c.y += c.velocity + Math.cos(c.d * 0.01) * 0.5;
+        c.x += Math.sin(c.d * 0.005) * 1;
+
+        if (c.y > canvas.height) {
+          confetti[index] = {
+            x: Math.random() * canvas.width,
+            y: -c.r,
+            r: Math.random() * 5 + 3,
+            d: Math.random() * 100,
+            color: `hsl(${Math.random() * 360}, 100%, 70%)`,
+            tilt: Math.floor(Math.random() * 20) - 10,
+            velocity: Math.random() * 3 + 1,
+            opacity: 1
+          };
+        }
+      });
+    }
+
+    function startConfetti() {
+      setCanvasSize();
+      createConfetti();
+      if (!animationIntervalId) {
+        animationIntervalId = setInterval(drawConfetti, 20);
+      }
+    }
+
+    window.addEventListener('resize', setCanvasSize);
+    document.addEventListener('DOMContentLoaded', setCanvasSize);
+  </script>
+</body>
+</html>
