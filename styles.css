@@ -1,3 +1,61 @@
 h1{
     font-size:100px
 }
+body {
+      margin: 0;  
+      font-family: 'Dancing Script', cursive;
+      background-image: url('WhatsApp%20Image%202025-07-17%20at%2015.42.04_8eb49fb8.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+    }
+    .container {
+      padding: 50px;
+      background-color: rgba(0, 0, 0, 0.5);
+      min-height: 100vh;
+    }
+    .gallery img {
+      width: 200px;
+      margin: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .next-button, .prev-button {
+      background-color: #ff69b4;
+      border: none;
+      padding: 15px 30px;
+      font-size: 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      margin-top: 30px;
+    }
+    .cake-page, .love-page {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .cake-img {
+      width: 250px;
+      margin-bottom: 20px;
+    }
+    h1, h2 {
+      margin: 10px;
+    }
+    .love-message {
+      font-size: 24px;
+      max-width: 700px;
+      margin-top: 20px;
+    }
+    #confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 999;
+    }
