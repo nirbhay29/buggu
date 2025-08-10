@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Happy Birthday</title>
@@ -24,6 +24,34 @@
       @keyframes sparkleFade {
         0% { opacity: 1; transform: scale(1); }
         100% { opacity: 0; transform: scale(0.5); }
+      }
+
+      .image-shower {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        animation: slideLeft 40s linear infinite;
+      }
+
+      .gallery {
+        overflow: hidden;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto;
+        border-radius: 16px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      }
+
+      .image-shower img {
+        height: 360px;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        object-fit: cover;
+      }
+
+      @keyframes slideLeft {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); } /* Adjust -50% based on total image width */
       }
     </style>
   </head>
@@ -49,12 +77,25 @@
       <h1>Happy Birthday My Love ❤️</h1>
       <h2>Here is a small surprise to cheer you up.😊</h2>
       <div class="gallery">
-        <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.02_88d38571.jpg" alt="Memory 1">
-        <img src="1.jpg" alt="Memory 4">
-        <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.03_8ff00ae4.jpg" alt="Memory 2">
-        <img src="2.jpg" alt="Memory 5">
-        <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.04_8e438fac.jpg" alt="Memory 3">
-        <img src="3.jpg" alt="Memory 6">
+        <div class="image-shower">
+          <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.02_88d38571.jpg" alt="Memory 1">
+          <img src="1.jpg" alt="Memory 4">
+          <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.03_8ff00ae4.jpg" alt="Memory 2">
+          <img src="2.jpg" alt="Memory 5">
+          <img src="WhatsApp%20Image%202025-07-17%20at%2015.42.04_8e438fac.jpg" alt="Memory 3">
+          <img src="3.jpg" alt="Memory 6">
+          <img src="a.jpg" alt="Memory 7">
+          <img src="4.jpg" alt="Memory 8">
+          <img src="b.jpg" alt="Memory 9">
+          <img src="5.jpg" alt="Memory 10">
+          <img src="c.jpg" alt="Memory 11">
+          <img src="6.jpg" alt="Memory 12">
+          <img src="d.jpg" alt="Memory 13">
+          <img src="7.jpg" alt="Memory 14">
+          <img src="e.jpg" alt="Memory 15">
+          <img src="8.jpg" alt="Memory 16">
+
+        </div>
       </div>
       <button class="next-button" onclick="showCakePage()">Next</button>
     </div> 
